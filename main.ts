@@ -14,24 +14,35 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenSwitchDown, function
     pacman.say("você destrancou a porta", 200)
 })
 let direcaoAtual = ""
+let ultimoX = 0
+let ultimoY = 0
 // Lógica de Animação Fluida
 forever(function () {
+    // O boneco só conta como "andando" se a posição realmente mudou.
+    // Assim, ficar parado (ou segurar a direção contra uma parede) não aciona animação.
+    let estaAndando = Math.abs(pacman.x - ultimoX) > 0.5 || Math.abs(pacman.y - ultimoY) > 0.5
+    ultimoX = pacman.x
+    ultimoY = pacman.y
+
     let novaDirecao = ""
-    if (controller.up.isPressed()) {
-        novaDirecao = "cima"
-    } else if (controller.down.isPressed()) {
-        novaDirecao = "baixo"
-    } else if (controller.left.isPressed()) {
-        novaDirecao = "esquerda"
-    } else if (controller.right.isPressed()) {
-        novaDirecao = "direita"
+    if (estaAndando) {
+        if (controller.up.isPressed()) {
+            novaDirecao = "cima"
+        } else if (controller.down.isPressed()) {
+            novaDirecao = "baixo"
+        } else if (controller.left.isPressed()) {
+            novaDirecao = "esquerda"
+        } else if (controller.right.isPressed()) {
+            novaDirecao = "direita"
+        }
     }
+    // Se está parado, novaDirecao fica "" e a animação é interrompida abaixo.
     // Só troca a animação quando a direção muda (evita reiniciar o loop toda hora)
     if (novaDirecao == direcaoAtual) {
         return
     }
     direcaoAtual = novaDirecao
-    if (controller.up.isPressed()) {
+    if (novaDirecao == "cima") {
         animation.runImageAnimation(pacman, [img`
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
@@ -67,7 +78,7 @@ forever(function () {
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             `], 200, true)
-    } else if (controller.down.isPressed()) {
+    } else if (novaDirecao == "baixo") {
         animation.runImageAnimation(pacman, [img`
             . . . . . . . . . . . . . . . . 
             . . . . . f f f f f f f . . . . 
@@ -103,7 +114,7 @@ forever(function () {
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             `], 200, true)
-    } else if (controller.left.isPressed()) {
+    } else if (novaDirecao == "esquerda") {
         animation.runImageAnimation(pacman, [img`
             . . . . . . . . . . . . . . . . 
             . . . . . f f f f f f f . . . . 
@@ -139,7 +150,7 @@ forever(function () {
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             `], 200, true)
-    } else if (controller.right.isPressed()) {
+    } else if (novaDirecao == "direita") {
         animation.runImageAnimation(pacman, [img`
             . . . . . . . . . . . . . . . . 
             . . . . f f f f f f f . . . . . 
