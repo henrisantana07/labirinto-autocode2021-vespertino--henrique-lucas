@@ -4,6 +4,7 @@ namespace SpriteKind {
     export const perigo = SpriteKind.create()
     export const danger = SpriteKind.create()
     export const venenosa = SpriteKind.create()
+    export const enemy = SpriteKind.create()
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorLockedNorth, function (sprite, location) {
     game.over(false)
@@ -111,9 +112,9 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorLockedSouth, function
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, function (sprite9, location8) {
     if (pacman.overlapsWith(jato2)) {
-        jato2.say("ache a chave")
-    } else {
         game.over(true)
+    } else {
+        jato2.say("ache a chave")
     }
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -206,9 +207,7 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenSwitchUp, function (sprite2, location2) {
     pacman.say("errou")
 })
-let projeto: Sprite = null
 let projectile: Sprite = null
-let jato2: Sprite = null
 let pacman: Sprite = null
 pacman = sprites.create(img`
     . . . . . . . . . . . . . . . . 
@@ -228,6 +227,7 @@ pacman = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
+pacman.setBoundingBox(2, 2, 14, 14)
 controller.moveSprite(pacman, 70, 70)
 jato2 = sprites.create(img`
     8 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
@@ -286,7 +286,7 @@ let gosma = sprites.create(img`
     b 7 7 7 7 7 7 7 7 7 7 7 7 7 7 b 
     b b b 7 7 7 7 7 7 7 7 7 7 b b b 
     b b b b b b b b b b b b b b b b 
-    `, SpriteKind.Enemy)
+    `, SpriteKind.enemy)
 gosma.setPosition(200, 490)
 scene.cameraFollowSprite(pacman)
 let choque = sprites.create(img`
@@ -365,11 +365,11 @@ forever(function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, bola_de_fogo, 85, 0)
+    projectile.setVelocity(85, 0)
     pause(1000)
-    projeto.setVelocity(85, 0)
 })
 forever(function () {
-    projeto = sprites.createProjectileFromSprite(img`
+    projectile = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -387,14 +387,11 @@ forever(function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, gosma, 0, -25)
-    projeto.setVelocity(-100, 0)
+    projectile.setVelocity(-100, 0)
     pause(1000)
 })
 forever(function () {
-    projeto.setVelocity(-100, 0)
-    pause(500)
-    projeto = sprites.createProjectileFromSprite(img`
-        . . . . . . . . . . . . . . . . 
+    projectile = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -405,15 +402,18 @@ forever(function () {
         . . . . . . . . . . . . . . . . 
         . . . . . 5 9 5 9 5 . . . . . . 
         . . . . . 9 5 9 5 9 . . . . . . 
+        . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, choque, 0, 100)
+    projectile.setVelocity(-100, 0)
+    pause(500)
 })
 forever(function () {
-    projeto = sprites.createProjectileFromSprite(img`
+    projectile = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . 9 9 9 9 9 9 9 . . . . . 
@@ -431,7 +431,7 @@ forever(function () {
         . . . . 9 9 9 9 9 9 9 . . . . . 
         . . . . . . . . . . . . . . . . 
         `, bola_de_neve, 0, 100)
-    projeto.setVelocity(0, 100)
+    projectile.setVelocity(0, 100)
     pause(500)
 })
 forever(function () {
@@ -453,6 +453,6 @@ forever(function () {
         . . . . f f f f f f f . . . . . 
         . . . . . . . . . . . . . . . . 
         `, aleatorio, 0, 100)
-    projeto.setVelocity(0, 50)
+    projectile.setVelocity(0, 50)
     pause(500)
 })
