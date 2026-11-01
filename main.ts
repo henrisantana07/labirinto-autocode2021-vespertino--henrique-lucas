@@ -13,8 +13,24 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenSwitchDown, function
     jato2.destroy()
     pacman.say("você destrancou a porta", 200)
 })
+let direcaoAtual = ""
 // Lógica de Animação Fluida
 forever(function () {
+    let novaDirecao = ""
+    if (controller.up.isPressed()) {
+        novaDirecao = "cima"
+    } else if (controller.down.isPressed()) {
+        novaDirecao = "baixo"
+    } else if (controller.left.isPressed()) {
+        novaDirecao = "esquerda"
+    } else if (controller.right.isPressed()) {
+        novaDirecao = "direita"
+    }
+    // Só troca a animação quando a direção muda (evita reiniciar o loop toda hora)
+    if (novaDirecao == direcaoAtual) {
+        return
+    }
+    direcaoAtual = novaDirecao
     if (controller.up.isPressed()) {
         animation.runImageAnimation(pacman, [img`
             . . . . . . . . . . . . . . . . 
@@ -160,6 +176,8 @@ forever(function () {
             . . . . . . . . . . . . . . . . 
             `], 200, true)
     } else {
+        // Para a animação e volta para a imagem parada
+        animation.stopAnimation(AnimationTypes.ImageAnimation, pacman)
         pacman.setImage(img`
             . . . . . . . . . . . . . . . . 
             . . . . f f f f f f f . . . . . 
@@ -202,8 +220,29 @@ pacman = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
 pacman.setBoundingBox(2, 2, 14, 14)
-// Removido: controller.moveSprite(pacman, 70, 70)
-// A movimentação agora é controlada via setVelocity no loop de atualização para permitir deslize
+// Movimento "Slippery Walls": aplica a velocidade em cada eixo separadamente.
+// Se o personagem encostar numa parede, o eixo bloqueado para e o outro continua,
+// fazendo ele deslizar pelas paredes em vez de travar nas quinas.
+forever(function () {
+    let vx = 0
+    let vy = 0
+    if (controller.left.isPressed()) {
+        vx = -70
+    } else if (controller.right.isPressed()) {
+        vx = 70
+    }
+    if (controller.up.isPressed()) {
+        vy = -70
+    } else if (controller.down.isPressed()) {
+        vy = 70
+    }
+    // Na diagonal, normaliza para manter a mesma velocidade total
+    if (vx != 0 && vy != 0) {
+        vx = vx * 0.7
+        vy = vy * 0.7
+    }
+    pacman.setVelocity(vx, vy)
+})
 
 jato2 = sprites.create(img`
     8 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
