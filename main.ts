@@ -219,29 +219,42 @@ pacman = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
-pacman.setBoundingBox(2, 2, 14, 14)
-// Movimento "Slippery Walls": aplica a velocidade em cada eixo separadamente.
-// Se o personagem encostar numa parede, o eixo bloqueado para e o outro continua,
-// fazendo ele deslizar pelas paredes em vez de travar nas quinas.
+pacman.setBoundingBox(3, 3, 13, 13)
+// Movimento "Slippery Walls" + alinhamento ao centro do tile.
+// Em corredores de 1 tile a hitbox encosta na parede lateral se o personagem
+// estiver alguns pixels fora do centro, travando o movimento ("corner catching").
+// Por isso, no eixo em que ele NÃO está andando, alinhamos ao centro do tile.
 forever(function () {
-    let vx = 0
-    let vy = 0
+    let dx = 0
+    let dy = 0
     if (controller.left.isPressed()) {
-        vx = -70
+        dx = -1
     } else if (controller.right.isPressed()) {
-        vx = 70
+        dx = 1
     }
     if (controller.up.isPressed()) {
-        vy = -70
+        dy = -1
     } else if (controller.down.isPressed()) {
-        vy = 70
+        dy = 1
     }
-    // Na diagonal, normaliza para manter a mesma velocidade total
-    if (vx != 0 && vy != 0) {
-        vx = vx * 0.7
-        vy = vy * 0.7
+    // Alinha o eixo perpendicular ao movimento ao centro do tile
+    if (dx != 0 && dy == 0) {
+        let alvoY = Math.round((pacman.y - 8) / 16) * 16 + 8
+        if (Math.abs(pacman.y - alvoY) < 8) {
+            pacman.y = alvoY
+        }
+    } else if (dy != 0 && dx == 0) {
+        let alvoX = Math.round((pacman.x - 8) / 16) * 16 + 8
+        if (Math.abs(pacman.x - alvoX) < 8) {
+            pacman.x = alvoX
+        }
     }
-    pacman.setVelocity(vx, vy)
+    // Na diagonal, reduz para manter a mesma velocidade total
+    let vel = 70
+    if (dx != 0 && dy != 0) {
+        vel = 49.5
+    }
+    pacman.setVelocity(dx * vel, dy * vel)
 })
 
 jato2 = sprites.create(img`
