@@ -13,199 +13,173 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenSwitchDown, function
     jato2.destroy()
     pacman.say("você destrancou a porta", 200)
 })
-controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
-    animation.runImageAnimation(
-    pacman,
-    [img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . f f f f f f f . . . . . 
-        . . . f 5 5 5 f f f 5 f . . . . 
-        . . f 5 1 f 5 f f f 5 5 f . . . 
-        . f 5 5 f f 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . . f 5 5 5 5 5 5 5 5 5 f . . . 
-        . . . f 5 5 5 5 5 5 5 f . . . . 
-        . . . . f f f f f f f . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `,img`
-        . . . . . . . . . . . . . . . . 
-        . . . . f f f f f f f . . . . . 
-        . . . f 5 5 5 5 5 5 5 f . . . . 
-        . . f 5 5 5 5 5 5 5 5 5 f . . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . . f 5 5 5 5 5 5 5 5 5 f . . . 
-        . . . f 5 5 5 5 5 5 5 f . . . . 
-        . . . . f f f f f f f . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `],
-    200,
-    true
-    )
-})
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorLockedEast, function (sprite7, location6) {
-    game.over(false)
-})
-sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Player, function (sprite3, otherSprite) {
-    pacman.destroy()
-    game.over(false)
-})
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorLockedWest, function (sprite4, location3) {
-    game.over(false)
-})
-controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
-    animation.runImageAnimation(
-    pacman,
-    [img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . f f f f f f f . . . . 
-        . . . . f 5 5 5 5 5 5 5 f . . . 
-        . . . f 5 5 5 5 5 5 5 5 5 f . . 
-        . . f 5 1 f 5 5 5 5 5 5 5 5 f . 
-        . . f 5 f f 5 5 5 5 5 5 5 5 f . 
-        . . f 5 5 5 5 5 5 5 5 5 5 5 f . 
-        . . f f f 5 5 5 5 5 5 5 5 5 f . 
-        . . f f f 5 5 5 5 5 5 5 5 5 f . 
-        . . f f f 5 5 5 5 5 5 5 5 5 f . 
-        . . f 5 5 5 5 5 5 5 5 5 5 5 f . 
-        . . . f 5 5 5 5 5 5 5 5 5 f . . 
-        . . . . f 5 5 5 5 5 5 5 f . . . 
-        . . . . . f f f f f f f . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `,img`
-        . . . . . . . . . . . . . . . . 
-        . . . . f f f f f f f . . . . . 
-        . . . f 5 5 5 5 5 5 5 f . . . . 
-        . . f 5 5 5 5 5 5 5 5 5 f . . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . . f 5 5 5 5 5 5 5 5 5 f . . . 
-        . . . f 5 5 5 5 5 5 5 f . . . . 
-        . . . . f f f f f f f . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `],
-    200,
-    true
-    )
-})
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorLockedSouth, function (sprite6, location5) {
-    game.over(false)
-})
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, function (sprite9, location8) {
-    if (pacman.overlapsWith(jato2)) {
-        game.over(true)
+// Lógica de Animação Fluida
+forever(function () {
+    if (controller.up.isPressed()) {
+        animation.runImageAnimation(pacman, [img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . f 5 5 5 f f f 5 f . . . . 
+            . . f 5 1 f 5 f f f 5 5 f . . . 
+            . f 5 5 f f 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . . f 5 5 5 5 5 5 5 5 5 f . . . 
+            . . . f 5 5 5 5 5 5 5 f . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . f 5 5 5 5 5 5 5 f . . . . 
+            . . f 5 5 5 5 5 5 5 5 5 f . . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . . f 5 5 5 5 5 5 5 5 5 f . . . 
+            . . . f 5 5 5 5 5 5 5 f . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `], 200, true)
+    } else if (controller.down.isPressed()) {
+        animation.runImageAnimation(pacman, [img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . f f f f f f f . . . . 
+            . . . . f 5 5 5 5 5 5 5 f . . . 
+            . . . f 5 5 5 5 5 5 5 5 5 f . . 
+            . . f 5 5 5 5 5 5 5 5 5 5 5 f . 
+            . . f 5 5 5 5 5 5 5 5 5 5 5 f . 
+            . . f 5 5 5 5 5 5 5 5 5 5 5 f . 
+            . . f 5 5 5 5 5 5 5 5 5 5 5 f . 
+            . . f 5 5 5 5 5 5 5 5 5 5 5 f . 
+            . . f 5 5 5 5 5 5 5 5 5 5 5 f . 
+            . . f 5 5 5 5 5 5 5 f f 5 5 f . 
+            . . . f 5 5 f f f 5 f 1 5 f . . 
+            . . . . f 5 f f f 5 5 5 f . . . 
+            . . . . . f f f f f f f . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . f 5 5 5 5 5 5 5 f . . . . 
+            . . f 5 5 5 5 5 5 5 5 5 f . . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . . f 5 5 5 5 5 5 5 5 5 f . . . 
+            . . . f 5 5 5 5 5 5 5 f . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `], 200, true)
+    } else if (controller.left.isPressed()) {
+        animation.runImageAnimation(pacman, [img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . f f f f f f f . . . . 
+            . . . . f 5 5 5 5 5 5 5 f . . . 
+            . . . f 5 5 5 5 5 5 5 5 5 f . . 
+            . . f 5 1 f 5 5 5 5 5 5 5 5 f . 
+            . . f 5 f f 5 5 5 5 5 5 5 5 f . 
+            . . f 5 5 5 5 5 5 5 5 5 5 5 f . 
+            . . f f f 5 5 5 5 5 5 5 5 5 f . 
+            . . f f f 5 5 5 5 5 5 5 5 5 f . 
+            . . f f f 5 5 5 5 5 5 5 5 5 f . 
+            . . f 5 5 5 5 5 5 5 5 5 5 5 f . 
+            . . . f 5 5 5 5 5 5 5 5 5 f . . 
+            . . . . f 5 5 5 5 5 5 5 f . . . 
+            . . . . . f f f f f f f . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . f 5 5 5 5 5 5 5 f . . . . 
+            . . f 5 5 5 5 5 5 5 5 5 f . . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . . f 5 5 5 5 5 5 5 5 5 f . . . 
+            . . . f 5 5 5 5 5 5 5 f . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `], 200, true)
+    } else if (controller.right.isPressed()) {
+        animation.runImageAnimation(pacman, [img`
+            . . . . . . . . . . . . . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . f 5 5 5 5 5 5 5 f . . . . 
+            . . f 5 5 5 5 5 5 5 5 5 f . . . 
+            . f 5 5 5 5 5 5 5 5 f 1 5 f . . 
+            . f 5 5 5 5 5 5 5 5 f f 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 f f f . . 
+            . f 5 5 5 5 5 5 5 5 5 f f f . . 
+            . f 5 5 5 5 5 5 5 5 5 f f f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . . f 5 5 5 5 5 5 5 5 5 f . . . 
+            . . . f 5 5 5 5 5 5 5 f . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . f 5 5 5 5 5 5 5 f . . . . 
+            . . f 5 5 5 5 5 5 5 5 5 f . . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . . f 5 5 5 5 5 5 5 5 5 f . . . 
+            . . . f 5 5 5 5 5 5 5 f . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `], 200, true)
     } else {
-        jato2.say("ache a chave")
+        pacman.setImage(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . f 5 5 5 5 5 5 5 f . . . . 
+            . . f 5 5 5 5 5 5 5 5 5 f . . . 
+            . f 5 5 5 5 5 5 5 f 1 5 5 f . . 
+            . f 5 5 5 5 5 5 5 f f 5 5 f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 f f . . 
+            . f 5 5 5 5 5 5 5 5 5 f f f . . 
+            . f 5 5 5 5 5 5 5 5 5 f f f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 f f . . 
+            . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
+            . . f 5 5 5 5 5 5 5 5 5 f . . . 
+            . . . f 5 5 5 5 5 5 5 f . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `)
     }
-})
-controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
-    animation.runImageAnimation(
-    pacman,
-    [img`
-        . . . . . . . . . . . . . . . . 
-        . . . . f f f f f f f . . . . . 
-        . . . f 5 5 5 5 5 5 5 f . . . . 
-        . . f 5 5 5 5 5 5 5 5 5 f . . . 
-        . f 5 5 5 5 5 5 5 5 f 1 5 f . . 
-        . f 5 5 5 5 5 5 5 5 f f 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 f f f . . 
-        . f 5 5 5 5 5 5 5 5 5 f f f . . 
-        . f 5 5 5 5 5 5 5 5 5 f f f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . . f 5 5 5 5 5 5 5 5 5 f . . . 
-        . . . f 5 5 5 5 5 5 5 f . . . . 
-        . . . . f f f f f f f . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `,img`
-        . . . . . . . . . . . . . . . . 
-        . . . . f f f f f f f . . . . . 
-        . . . f 5 5 5 5 5 5 5 f . . . . 
-        . . f 5 5 5 5 5 5 5 5 5 f . . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . . f 5 5 5 5 5 5 5 5 5 f . . . 
-        . . . f 5 5 5 5 5 5 5 f . . . . 
-        . . . . f f f f f f f . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `],
-    200,
-    true
-    )
-})
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.purpleSwitchUp, function (sprite8, location7) {
-    pacman.say("essa alavanca n funciona", 200)
-})
-controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
-    animation.runImageAnimation(
-    pacman,
-    [img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . f f f f f f f . . . . 
-        . . . . f 5 5 5 5 5 5 5 f . . . 
-        . . . f 5 5 5 5 5 5 5 5 5 f . . 
-        . . f 5 5 5 5 5 5 5 5 5 5 5 f . 
-        . . f 5 5 5 5 5 5 5 5 5 5 5 f . 
-        . . f 5 5 5 5 5 5 5 5 5 5 5 f . 
-        . . f 5 5 5 5 5 5 5 5 5 5 5 f . 
-        . . f 5 5 5 5 5 5 5 5 5 5 5 f . 
-        . . f 5 5 5 5 5 5 5 5 5 5 5 f . 
-        . . f 5 5 5 5 5 5 5 f f 5 5 f . 
-        . . . f 5 5 f f f 5 f 1 5 f . . 
-        . . . . f 5 f f f 5 5 5 f . . . 
-        . . . . . f f f f f f f . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `,img`
-        . . . . . . . . . . . . . . . . 
-        . . . . f f f f f f f . . . . . 
-        . . . f 5 5 5 5 5 5 5 f . . . . 
-        . . f 5 5 5 5 5 5 5 5 5 f . . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . f 5 5 5 5 5 5 5 5 5 5 5 f . . 
-        . . f 5 5 5 5 5 5 5 5 5 f . . . 
-        . . . f 5 5 5 5 5 5 5 f . . . . 
-        . . . . f f f f f f f . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `],
-    200,
-    true
-    )
-})
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenSwitchUp, function (sprite2, location2) {
-    pacman.say("errou")
+    pause(200)
 })
 let projectile: Sprite = null
 let pacman: Sprite = null
@@ -228,7 +202,9 @@ pacman = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
 pacman.setBoundingBox(2, 2, 14, 14)
-controller.moveSprite(pacman, 70, 70)
+// Removido: controller.moveSprite(pacman, 70, 70)
+// A movimentação agora é controlada via setVelocity no loop de atualização para permitir deslize
+
 jato2 = sprites.create(img`
     8 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
     8 7 7 7 7 7 7 7 7 7 7 7 7 7 7 9 
